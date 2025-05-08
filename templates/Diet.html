@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diabetes Diet - Diabetes Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body class="bg-gradient-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Diabetes Pro</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/diet">Diet</a></li>
+                <li class="nav-item"><a class="nav-link" href="/articles">Articles</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="card p-4 mb-4">
+            <h2 class="mb-3">Recommended Diet for Diabetes</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Foods to Eat</h4>
+                    <ul>
+                        <li>Non-starchy vegetables (broccoli, spinach, peppers)</li>
+                        <li>Whole grains (quinoa, brown rice, oats)</li>
+                        <li>Lean proteins (fish, chicken, tofu, legumes)</li>
+                        <li>Healthy fats (avocado, olive oil, nuts)</li>
+                        <li>Low-fat dairy</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Foods to Avoid</h4>
+                    <ul>
+                        <li>Sugary drinks and snacks</li>
+                        <li>Processed carbohydrates (white bread, pastries)</li>
+                        <li>Trans fats and fried foods</li>
+                        <li>Excess salt and red meat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h5>Sample Meal Plan</h5>
+                    <ul class="list-unstyled">
+                        <li><strong>Breakfast:</strong> Oatmeal with berries and nuts</li>
+                        <li><strong>Lunch:</strong> Grilled chicken salad with olive oil dressing</li>
+                        <li><strong>Dinner:</strong> Baked salmon, quinoa, and steamed broccoli</li>
+                        <li><strong>Snack:</strong> Greek yogurt or a handful of almonds</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h5>Downloadable Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.diabetes.org/healthy-living/recipes-nutrition" target="_blank">ADA
+                                Nutrition Guides (PDF)</a></li>
+                        <li><a href="https://www.cdc.gov/diabetes/managing/eat-well.html" target="_blank">CDC: Eat Well
+                                with Diabetes</a></li>
+                        <li><a href="https://www.niddk.nih.gov/health-information/diabetes/overview/diet-eating-physical-activity"
+                                target="_blank">NIH: Diabetes Diet & Activity</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>

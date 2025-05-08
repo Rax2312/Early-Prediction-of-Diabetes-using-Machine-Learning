@@ -1,0 +1,13 @@
+venv/
+myenv/
+tf26env/
+tf29env/
+__pycache__/
+*.pyc
+*.pyo
+*.h5
+*.keras
+*.pkl
+ml_model/fixed_model/
+.env
+.DS_Store

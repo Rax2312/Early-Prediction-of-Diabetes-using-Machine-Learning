@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diabetes Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body class="bg-gradient-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Diabetes Pro</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/diet">Diet</a></li>
+                <li class="nav-item"><a class="nav-link" href="/articles">Articles</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mb-4">
+                <div class="card p-4">
+                    <h3 class="mb-4">Enter Your Details</h3>
+                    <form action="/predict" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label>Age</label><input type="number" class="form-control" name="Age"
+                                    placeholder="Enter Age" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Sex</label>
+                                <select class="form-control" name="Sex" required>
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>BMI</label><input type="number" step="0.1" class="form-control" name="BMI"
+                                    placeholder="Enter BMI" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Blood Pressure</label><input type="number" class="form-control"
+                                    name="BloodPressure" placeholder="Enter Blood Pressure" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Glucose</label><input type="number" class="form-control" name="Glucose"
+                                    placeholder="Enter Glucose Level" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Insulin</label><input type="number" class="form-control" name="Insulin"
+                                    placeholder="Enter Insulin Level" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Pulse Rate</label><input type="number" class="form-control" name="Pulse Rate"
+                                    placeholder="Enter Pulse Rate" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Skin Thickness</label><input type="number" class="form-control"
+                                    name="Skin_Thickness" placeholder="Enter Skin Thickness" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Diabetes Pedigree</label><input type="number" step="0.001" class="form-control"
+                                    name="DiabetesPedigreeFunction" placeholder="Enter Value" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>RBC Count</label><input type="number" step="0.1" class="form-control" name="RBC"
+                                    placeholder="Enter RBC Count" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Pregnancies</label><input type="number" class="form-control" name="Pregnancies"
+                                    placeholder="Enter Number" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>HbA1c</label><input type="number" step="0.1" class="form-control" name="HbA1c"
+                                    placeholder="Enter HbA1c Level" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Smoker</label>
+                                <select class="form-control" name="Smoker" required>
+                                    <option value="">Select</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Diet Habit</label>
+                                <select class="form-control" name="Diet Habit" required>
+                                    <option value="">Select</option>
+                                    <option value="Vegetarian">Vegetarian</option>
+                                    <option value="Non-Vegetarian">Non-Vegetarian</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Family History</label>
+                                <select class="form-control" name="Family History" required>
+                                    <option value="">Select</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Acanthosis Nigricans</label>
+                                <select class="form-control" name="Acanthosis Nigricans" required>
+                                    <option value="">Select</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Predict</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-4">
+                <div class="card p-4">
+                    <h4 class="mb-3">Reference Ranges</h4>
+                    <table class="table table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Recommended Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Age</td>
+                                <td>18 - 80 years</td>
+                            </tr>
+                            <tr>
+                                <td>BMI</td>
+                                <td>18.5 - 24.9</td>
+                            </tr>
+                            <tr>
+                                <td>Blood Pressure</td>
+                                <td>90/60 - 120/80 mmHg</td>
+                            </tr>
+                            <tr>
+                                <td>Glucose</td>
+                                <td>70 - 140 mg/dL</td>
+                            </tr>
+                            <tr>
+                                <td>Insulin</td>
+                                <td>2 - 25 µIU/mL</td>
+                            </tr>
+                            <tr>
+                                <td>Pulse Rate</td>
+                                <td>60 - 100 bpm</td>
+                            </tr>
+                            <tr>
+                                <td>Skin Thickness</td>
+                                <td>10 - 50 mm</td>
+                            </tr>
+                            <tr>
+                                <td>Diabetes Pedigree</td>
+                                <td>0.0 - 2.5</td>
+                            </tr>
+                            <tr>
+                                <td>RBC Count</td>
+                                <td>4.2 - 5.9 million/µL</td>
+                            </tr>
+                            <tr>
+                                <td>Pregnancies</td>
+                                <td>0 - 15</td>
+                            </tr>
+                            <tr>
+                                <td>HbA1c</td>
+                                <td>4.0 - 5.6%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

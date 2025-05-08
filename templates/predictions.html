@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prediction Result - Diabetes Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body class="bg-gradient-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Diabetes Pro</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/diet">Diet</a></li>
+                <li class="nav-item"><a class="nav-link" href="/articles">Articles</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card p-5 text-center">
+                    <h2 class="mb-4">Prediction Result</h2>
+                    {% if prediction == 'Type 1 Diabetes' %}
+                    <div class="alert alert-danger display-5">Type 1 Diabetes Detected</div>
+                    <p class="lead">Type 1 diabetes is an autoimmune condition. Management includes insulin therapy,
+                        healthy eating, and regular monitoring. <a href="/diet">See recommended diets</a> and <a
+                            href="/articles">latest research</a>.</p>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">Start insulin therapy as prescribed</li>
+                        <li class="list-group-item">Monitor blood glucose regularly</li>
+                        <li class="list-group-item">Maintain a balanced, carb-counted diet</li>
+                        <li class="list-group-item">Stay active and hydrated</li>
+                    </ul>
+                    <a href="/articles" class="btn btn-primary">Learn More</a>
+                    {% elif prediction == 'Type 2 Diabetes' %}
+                    <div class="alert alert-warning display-5">Type 2 Diabetes Detected</div>
+                    <p class="lead">Type 2 diabetes can often be managed with lifestyle changes. <a href="/diet">See
+                            recommended diets</a> and <a href="/articles">latest research</a>.</p>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">Adopt a low-sugar, high-fiber diet</li>
+                        <li class="list-group-item">Exercise regularly (at least 150 min/week)</li>
+                        <li class="list-group-item">Monitor blood glucose and HbA1c</li>
+                        <li class="list-group-item">Consult your doctor for medication if needed</li>
+                    </ul>
+                    <a href="/articles" class="btn btn-primary">Learn More</a>
+                    {% elif prediction == 'Non-Diabetic' %}
+                    <div class="alert alert-success display-5">No Diabetes Detected</div>
+                    <p class="lead">You are currently not at risk for diabetes. Maintain a healthy lifestyle to keep it
+                        that way! <a href="/diet">See healthy diets</a> and <a href="/articles">wellness tips</a>.</p>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">Eat a balanced diet</li>
+                        <li class="list-group-item">Stay physically active</li>
+                        <li class="list-group-item">Get regular checkups</li>
+                    </ul>
+                    <a href="/about" class="btn btn-primary">About Diabetes</a>
+                    {% else %}
+                    <div class="alert alert-danger">{{ prediction }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
