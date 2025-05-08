@@ -1,10 +1,9 @@
 import pandas as pd
 import numpy as np
 
-def preprocess_input(input_data):
-    """Replicates exact preprocessing from model training"""
+def preprocess_input(input_data)
     
-    # Binary features mapping (1/2 encoding from your training)
+    # Binary features mapping 
     binary_map = {
         'Sex': {'Male': 1, 'Female': 2},
         'Smoker': {'No': 1, 'Yes': 2},
@@ -15,7 +14,7 @@ def preprocess_input(input_data):
     
     processed = {}
     
-    # Numeric features (already binned 1-4 during training)
+    # Numeric features 
     numeric_features = [
         'Age', 'BMI', 'BloodPressure', 'Glucose', 'Insulin',
         'Pulse Rate', 'Skin_Thickness', 'DiabetesPedigreeFunction',
@@ -38,7 +37,7 @@ def preprocess_input(input_data):
     for feature in binary_map:
         processed[feature] = binary_map[feature][input_data[feature]]
     
-    # Maintain exact feature order expected by model
+
     feature_order = [
         'Age', 'BMI', 'BloodPressure', 'Glucose', 'Insulin',
         'Pulse Rate', 'Skin_Thickness', 'DiabetesPedigreeFunction',
